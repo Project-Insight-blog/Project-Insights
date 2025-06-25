@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Research Articles</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    header {
+      background: #1a1a1a;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .search-box {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 90%;
+      max-width: 500px;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .tags {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: #eee;
+      color: #333;
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .tag:hover {
+      background-color: #ccc;
+    }
+
+    .article {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .article h2 a {
+      color: #0055aa;
+      text-decoration: none;
+    }
+
+    .article h2 a:hover {
+      text-decoration: underline;
+    }
+
+    .article .tags-inline {
+      margin-top: 0.5rem;
+    }
+
+    .article .tags-inline .tag {
+      font-size: 0.8rem;
+      background-color: #dfefff;
+      color: #0055aa;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      padding: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Research Articles</h1>
+    <p>by Temuulen Tseren</p>
+  </header>
+
+  <div class="container">
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search articles..." onkeyup="filterArticles()" />
+    </div>
+
+    <div class="tags">
+      <span class="tag" onclick="filterByTag('all')">All</span>
+      <span class="tag" onclick="filterByTag('Environment')">Environment</span>
+      <span class="tag" onclick="filterByTag('Energy')">Energy</span>
+      <span class="tag" onclick="filterByTag('Health')">Health</span>
+    </div>
+
+    <div id="articles">
+
+      <div class="article" data-tags=" Health ">
+        <h2><a href="alcohol.html">Can We Feed the Brain What It Needs to Heal from Alcohol?</a></h2>
+        <p class="date">Published: June 21, 2025</p>
+        <p class="content">
+          This research explores  <strong>Click to read more.</strong>
+        </p>
+        <div class="tags-inline"> 
+          <span class="tag">Health</span>
+        </div>
+      </div>
+
+      <div class="article" data-tags="Environment">
+        <h2><a href="smt.html">smt</a></h2>
+        <p class="date">Published: May 12, 2025</p>
+        <p class="content">
+          This paper proposes  <strong>Click to read more.</strong>
+        </p>
+        <div class="tags-inline">
+          <span class="tag">Environment</span>
+        </div>
+      </div>
+
+      <div class="article" data-tags="Energy Technology">
+        <h2><a href="smt2.html">smt2</a></h2>
+        <p class="date">Published: March 30, 2025</p>
+        <p class="content">
+          A study comparing  <strong>Click to read more.</strong>
+        </p>
+        <div class="tags-inline">
+          <span class="tag">Energy</span>
+          <span class="tag">Technology</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Temuulen Tseren | All rights reserved.
+  </footer>
+
+  <script>
+    function filterArticles() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const articles = document.querySelectorAll("#articles .article");
+
+      articles.forEach(article => {
+        const title = article.querySelector("h2").textContent.toLowerCase();
+        const content = article.querySelector(".content").textContent.toLowerCase();
+        const match = title.includes(input) || content.includes(input);
+        article.style.display = match ? "block" : "none";
+      });
+    }
+
+    function filterByTag(tag) {
+      const articles = document.querySelectorAll("#articles .article");
+
+      articles.forEach(article => {
+        const tags = article.getAttribute("data-tags").toLowerCase();
+        article.style.display = (tag === 'all' || tags.includes(tag.toLowerCase())) ? "block" : "none";
+      });
+
+      document.getElementById("searchInput").value = '';
+    }
+  </script>
+
+</body>
+</html>
